@@ -14,7 +14,10 @@
     <h1>Centros de doação perto de você</h1>
     <p>Encontre onde pegar roupas, atendimento de saúde e outros tipos de ajuda perto de você.</p>
  
-    
+   
+    <button id="btnLocalizar" onclick="getLocation()"> Usar minha localização </button>
+ 
+    <div id="status">Toque no botão acima para começar. </div>
   </header>
  
 
@@ -26,6 +29,7 @@
   </div>
  
   <main>
+
     <div id="lista">
       <div class="centro">
         <h3>Bazar Solidário Vila Nova</h3>
@@ -58,6 +62,8 @@
         <span class="categoria-tag">Outros</span>
       </div>
     </div>
+ 
+
     <iframe
       id="mapa"
       width="100%"
