@@ -1,0 +1,253 @@
+* {box-sizing: border-box;}
+
+:root {
+
+    --p: #5fa576;             
+
+    --p-escuro: #35724a;      
+
+    --cinza-claro: #e2d8d8;   
+
+    --cinza-borda: #b8b4ad;   
+
+    --branco: #FFFFFF;
+
+    --preto: #030303;
+
+    --cinza: #504e4b;
+
+    --linha: #ccc3b6;          
+}
+
+
+
+
+html,
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    color: var(--preto);
+
+    background: var(--branco);
+
+    line-height: 1.5;
+}
+
+
+
+
+.container {
+
+    width: min(100% - 32px, 960px);
+
+    margin: 48px auto;
+}
+
+
+
+
+.card {
+
+    background: var(--branco);
+
+    border:
+        1px solid
+        var(--linha);
+
+    border-radius: 12px;
+
+    padding: 24px;
+
+    box-shadow:
+        0 6px 18px
+        rgba(0, 0, 0, 0.04);
+}
+
+
+.destaque {
+
+    margin: 0 0 8px;
+
+    font-weight: 500;
+
+    font-size: 1.6rem;
+
+    color: var(--p);
+}
+
+
+
+
+form fieldset {
+
+    border:
+        1px solid
+        var(--linha);
+
+    border-radius: 10px;
+
+    padding: 16px;
+
+    margin: 16px 0 0;
+}
+
+
+legend {
+
+    font-weight: 700;
+
+    padding: 0 6px;
+}
+
+
+label {
+
+    display: block;
+
+    margin: 10px 0 6px;
+}
+
+
+input,
+select,
+textarea {
+
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border:
+        1px solid
+        var(--linha);
+
+    border-radius: 8px;
+
+    background: var(--branco);
+
+    font: inherit;
+}
+
+input:hover,
+textarea:hover {
+    border-color: var(--cinza);
+}
+
+
+
+input:focus,
+select:focus,
+textarea:focus {
+
+    outline:
+        3px solid
+        rgba(78, 155, 104, 0.2);
+
+    border-color:
+        var(--p);
+}
+
+
+
+
+.acoes {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 10px;
+}
+
+
+
+
+button,
+.acoes a {
+
+    cursor: pointer;
+
+    border: none;
+
+    padding: 10px 18px;
+
+    border-radius: 8px;
+
+    font-weight: 700;
+
+    background: var(--p);
+
+    color: var(--branco);
+
+    text-decoration: none;
+
+    display: inline-block;
+
+    font: inherit;
+}
+
+
+button:hover,
+.acoes a:hover {
+
+    background: var(--p-escuro);
+}
+
+
+button.secundario,
+.acoes a.secundario {
+
+    background: var(--cinza-claro);
+
+    color: var(--preto);
+}
+
+button.secundario:hover,
+.acoes a.secundario:hover {
+
+    background: var(--cinza-borda);
+}
+
+
+
+
+.rodape {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 32px 48px;
+  background: var(--cinza-claro);
+  border: 1px solid var(--cinza-borda);
+  font-size: 0.88rem;
+  color: var(--cinza);
+}
+
+
+.rodape__marca p {
+    margin: 4px 0 0;
+    
+}
+
+.rodape__links {
+    display: flex;
+    gap: 24px;
+}
+
+.rodape__links a {
+    text-decoration: none;
+    color: var(--preto);
+}
+
+.rodape__links a:hover {
+    color: var(--p);
+}
+
+.rodape__copy {
+    margin: 0;
+}
