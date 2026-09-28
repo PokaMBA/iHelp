@@ -1,0 +1,221 @@
+* { box-sizing: border-box; }
+
+:root {
+  --p: #5fa576;            
+  --p-escuro: #35724a;     
+  --cinza-claro: #e2d8d8;  
+  --cinza-borda: #b8b4ad;  
+  --branco: #FFFFFF;       
+  --preto: #030303;        
+  --cinza: #504e4b;        
+  --linha: #ccc3b6;         
+
+  --raio: 4px; 
+}
+
+html { scroll-behavior: smooth; } 
+
+a { color: inherit; }
+
+img { max-width: 100%; display: block; }
+
+.barra_topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; 
+  gap: 24px;
+  padding: 18px 48px;
+  background: var(--cinza-claro);
+  border: 1px solid var(--cinza-borda); 
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icone_marca {
+  width: 30px;
+  height: 30px;
+}
+
+.nome_site {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--p); 
+}
+
+.barra_topo__links {
+  display: flex;
+  gap: 32px;
+  font-size: 0.95rem;
+}
+
+.barra_topo__links a {
+  text-decoration: none;
+  color: var(--preto);
+}
+
+.barra_topo__links a:hover { color: var(--p); } 
+
+.btn-entrar {
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  color: var(--branco);
+  background: var(--p);
+  padding: 10px 26px;
+  border-radius: var(--raio);
+}
+
+.btn-entrar:hover {
+  background: var(--p-escuro); 
+  border-color: var(--p-escuro);
+}
+
+.informações {
+  display: grid;
+  grid-template-columns: 1fr 1fr; 
+  gap: 40px;
+  align-items: stretch; 
+  padding: 56px 48px;
+  max-width: 1200px;
+  margin: 0 auto; 
+}
+
+
+.informações__card {
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+}
+
+.informações__title {
+  font-size: 1.9rem;
+  font-weight: 500;
+  color: var(--p);
+  margin: 0 0 20px;
+  line-height: 1.25;
+}
+
+.informações__text {
+  font-size: 1.05rem;
+  color: var(--preto);
+}
+
+
+.informações__photo {
+  border-radius: var(--raio);
+  overflow: hidden; 
+  min-height: 320px;
+}
+
+.informações__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+}
+
+
+
+.explicações {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+
+.painel_saúde,
+.painel_doacao {
+  position: relative;
+  min-height: 320px;
+  display: flex;
+  align-items: flex-end; 
+  background-size: cover;
+  background-position: center;
+  color: var(--branco); 
+}
+
+
+.painel_saúde {
+  background-image: linear-gradient(180deg, rgba(32,29,27,0.15) 0%, rgba(32,29,27,0.78) 100%),
+    url("Saúde.jpg");
+}
+
+
+.painel_doacao {
+  background-image: linear-gradient(180deg, rgba(75,46,82,0.15) 0%, rgba(75,46,82,0.85) 100%),
+    url("Doação.jpg");
+}
+
+
+.painel_saúde > .explicações,
+.painel_doacao > .explicações {
+  display: block; 
+  padding: 36px 48px;
+  max-width: 30ch;
+}
+
+.painel_saúde h2,
+.painel_doacao h2 {
+  font-weight: 500;
+  font-size: 1.7rem;
+  margin: 0 0 10px;
+}
+
+.painel_saúde p,
+.painel_doacao p {
+  margin: 0 0 4px; 
+  line-height: 1.5;
+  font-size: 0.98rem;
+  color: rgba(255,255,255,0.9); 
+}
+
+
+.chamada {
+  text-align: center;
+  padding: 72px 24px;
+  background: var(--branco);
+  border-top: 1px solid var(--linha); 
+}
+
+.chamada h2 {
+  font-weight: 500;
+  font-size: 1.8rem;
+  color: var(--p);
+  margin: 0 0 10px;
+}
+
+.chamada p {
+  margin: 0 0 28px;
+  color: var(--preto);
+}
+
+
+.rodape {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 32px 48px;
+  background: var(--cinza-claro);
+  border: 1px solid var(--cinza-borda);
+  font-size: 0.88rem;
+  color: var(--cinza);
+}
+
+.rodape__marca p { margin: 4px 0 0; }
+
+.rodape__links {
+  display: flex;
+  gap: 24px;
+}
+
+.rodape__links a { text-decoration: none; }
+.rodape__links a:hover { color: var(--p); }
+
+.rodape__copy { margin: 0; }
