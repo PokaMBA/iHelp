@@ -17,16 +17,26 @@ html { scroll-behavior: smooth; }
 
 a { color: inherit; }
 
-img { max-width: 100%; display: block; }
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
 
 .barra_topo {
   display: flex;
-  align-items: center;
-  justify-content: space-between; 
-  gap: 24px;
-  padding: 18px 48px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 16px;
   background: var(--cinza-claro);
   border: 1px solid var(--cinza-borda); 
+}
+
+.marca,
+.barra_topo__links {
+  margin: 0;
 }
 
 .marca {
@@ -48,7 +58,8 @@ img { max-width: 100%; display: block; }
 
 .barra_topo__links {
   display: flex;
-  gap: 32px;
+  flex-wrap: wrap;
+  gap: 8px 20px;
   font-size: 0.95rem;
 }
 
@@ -76,10 +87,10 @@ img { max-width: 100%; display: block; }
 
 .informações {
   display: grid;
-  grid-template-columns: 1fr 1fr; 
-  gap: 40px;
+  grid-template-columns: 1fr;
+  gap: 24px;
   align-items: stretch; 
-  padding: 56px 48px;
+  padding: 24px 16px;
   max-width: 1200px;
   margin: 0 auto; 
 }
@@ -88,14 +99,14 @@ img { max-width: 100%; display: block; }
 .informações__card {
   border: 1px solid var(--linha);
   border-radius: var(--raio);
-  padding: 40px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   justify-content: center; 
 }
 
 .informações__title {
-  font-size: 1.9rem;
+  font-size: 1.5rem;
   font-weight: 500;
   color: var(--p);
   margin: 0 0 20px;
@@ -109,9 +120,10 @@ img { max-width: 100%; display: block; }
 
 
 .informações__photo {
+  margin: 0;
   border-radius: var(--raio);
   overflow: hidden; 
-  min-height: 320px;
+  height: 260px;
 }
 
 .informações__photo img {
@@ -124,7 +136,7 @@ img { max-width: 100%; display: block; }
 
 .explicações {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
 }
 
 
@@ -155,7 +167,7 @@ img { max-width: 100%; display: block; }
 .painel_saúde > .explicações,
 .painel_doacao > .explicações {
   display: block; 
-  padding: 36px 48px;
+  padding: 24px 16px;
   max-width: 30ch;
 }
 
@@ -177,14 +189,14 @@ img { max-width: 100%; display: block; }
 
 .chamada {
   text-align: center;
-  padding: 72px 24px;
+  padding: 48px 16px;
   background: var(--branco);
   border-top: 1px solid var(--linha); 
 }
 
 .chamada h2 {
   font-weight: 500;
-  font-size: 1.8rem;
+  font-size: 1.5rem;
   color: var(--p);
   margin: 0 0 10px;
 }
@@ -197,11 +209,10 @@ img { max-width: 100%; display: block; }
 
 .rodape {
   display: flex;
-  flex-wrap: wrap; 
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  padding: 32px 48px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 16px;
   background: var(--cinza-claro);
   border: 1px solid var(--cinza-borda);
   font-size: 0.88rem;
@@ -212,10 +223,82 @@ img { max-width: 100%; display: block; }
 
 .rodape__links {
   display: flex;
-  gap: 24px;
+  flex-wrap: wrap;
+  gap: 8px 16px;
 }
 
 .rodape__links a { text-decoration: none; }
 .rodape__links a:hover { color: var(--p); }
 
 .rodape__copy { margin: 0; }
+
+
+@media (min-width: 960px) {
+
+  .barra_topo {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding: 18px 48px;
+  }
+
+
+  .marca,
+  .barra_topo__links {
+    margin: 1em 0;
+  }
+
+  .barra_topo__links {
+    gap: 32px;
+  }
+
+  .informações {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 56px 48px;
+  }
+
+  .informações__card {
+    padding: 40px;
+  }
+
+  .informações__title {
+    font-size: 1.9rem;
+  }
+
+  .informações__photo {
+    height: auto;
+    min-height: 320px;
+  }
+
+  .explicações {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .painel_saúde > .explicações,
+  .painel_doacao > .explicações {
+    padding: 36px 48px;
+  }
+
+  .chamada {
+    padding: 72px 24px;
+  }
+
+  .chamada h2 {
+    font-size: 1.8rem;
+  }
+
+  .rodape {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 32px 48px;
+  }
+
+  .rodape__links {
+    gap: 24px;
+  }
+}
