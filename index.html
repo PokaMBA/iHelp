@@ -1,25 +1,22 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
-<head> 
-    <link 
-            rel="stylesheet" 
-            href="style.css"
-        >
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Centros de doação perto de você</title>
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centros de doação perto de você</title>
+</head>
 
 <body>
   <header>
     <h1>Centros de doação perto de você</h1>
     <p>Encontre onde pegar roupas, atendimento de saúde e outros tipos de ajuda perto de você.</p>
- 
-   
-    <button id="btnLocalizar" onclick="getLocation()"> Usar minha localização </button>
- 
-    <div id="status">Toque no botão acima para começar. </div>
+
+    <button id="btnLocalizar" onclick="getLocation()">Usar minha localização</button>
+
+    <div id="status">Toque no botão acima para começar.</div>
   </header>
- 
 
   <div id="filtros">
     <button class="filtro ativo" data-categoria="todos">Todos</button>
@@ -27,42 +24,47 @@
     <button class="filtro" data-categoria="saude">Saúde</button>
     <button class="filtro" data-categoria="outros">Outros</button>
   </div>
- 
-  <main>
 
+  <main>
     <div id="lista">
-      <div class="centro">
+
+      <div class="centro" data-categoria="roupa">
         <h3>Bazar Solidário Vila Nova</h3>
         <p>Vila Nova, Campinas</p>
         <span class="categoria-tag">Roupas</span>
       </div>
-      <div class="centro">
+
+      <div class="centro" data-categoria="saude">
         <h3>UBS Central</h3>
         <p>Centro, Campinas</p>
         <span class="categoria-tag">Saúde</span>
       </div>
-      <div class="centro">
+
+      <div class="centro" data-categoria="outros">
         <h3>Banco de Alimentos</h3>
         <p>Ponte Preta, Campinas</p>
         <span class="categoria-tag">Outros</span>
       </div>
-      <div class="centro">
+
+      <div class="centro" data-categoria="roupa">
         <h3>Doações Cambuí</h3>
         <p>Cambuí, Campinas</p>
         <span class="categoria-tag">Roupas</span>
       </div>
-      <div class="centro">
+
+      <div class="centro" data-categoria="saude">
         <h3>Posto de Saúde Taquaral</h3>
         <p>Taquaral, Campinas</p>
         <span class="categoria-tag">Saúde</span>
       </div>
-      <div class="centro">
+
+      <div class="centro" data-categoria="outros">
         <h3>Casa de Apoio Barão Geraldo</h3>
         <p>Barão Geraldo, Campinas</p>
         <span class="categoria-tag">Outros</span>
       </div>
+
     </div>
- 
 
     <iframe
       id="mapa"
@@ -75,37 +77,61 @@
   </main>
 
   <script>
-const x = document.getElementById("status");
+    const x = document.getElementById("status");
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(success, error);
-  } else {
-    x.innerHTML = "Geolocation is not supported by this browser.";
-  }
-}
-function error(err) {
-  alert("Erro ao obter localização: " + err.message);
-}
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, error);
+      } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+    }
 
-function success(position) {
-  const lat = position.coords.latitude;
-  const lon = position.coords.longitude;
+    function error(err) {
+      alert("Erro ao obter localização: " + err.message);
+    }
 
-  x.innerHTML = "Latitude: " + lat + "<br>Longitude: " + lon;
+    function success(position) {
+      const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
 
-  // Define uma "janela" pequena ao redor do usuário (quanto menor o delta, mais zoom)
-  const delta = 0.01;
-  const bbox = (lon - delta) + "%2C" + (lat - delta) + "%2C" + (lon + delta) + "%2C" + (lat + delta);
+      x.innerHTML = "Latitude: " + lat + "<br>Longitude: " + lon;
 
-  // Pega o iframe do mapa e troca a URL dele, incluindo o marker=lat,lon
-  const mapaFrame = document.getElementById("mapa");
-  mapaFrame.src = "https://www.openstreetmap.org/export/embed.html?bbox=" + bbox +
-                   "&layer=mapnik&marker=" + lat + "%2C" + lon;
-}
-</script>
+      const delta = 0.01;
+      const bbox = (lon - delta) + "%2C" + (lat - delta) + "%2C" +
+                   (lon + delta) + "%2C" + (lat + delta);
+
+      const mapaFrame = document.getElementById("mapa");
+      mapaFrame.src = "https://www.openstreetmap.org/export/embed.html?bbox=" +
+                      bbox + "&layer=mapnik&marker=" + lat + "%2C" + lon;
+    }
+
+    // Funcionamento dos filtros
+    const botoes = document.querySelectorAll(".filtro");
+    const centros = document.querySelectorAll(".centro");
+
+    botoes.forEach(function(botao) {
+      botao.addEventListener("click", function() {
+
+        const categoria = botao.dataset.categoria;
+
+        botoes.forEach(function(b) {
+          b.classList.remove("ativo");
+        });
+
+        botao.classList.add("ativo");
+
+        centros.forEach(function(centro) {
+          if (categoria === "todos" || centro.dataset.categoria === categoria) {
+            centro.style.display = "block";
+          } else {
+            centro.style.display = "none";
+          }
+        });
+
+      });
+    });
+  </script>
 
 </body>
 </html>
-
- 
