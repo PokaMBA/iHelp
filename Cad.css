@@ -17,9 +17,11 @@
     --cinza: #504e4b;
 
     --linha: #ccc3b6;          
+
+    --erro: #951d17;
+
+    --erro-fundo: #fdeceb;
 }
-
-
 
 
 html,
@@ -36,18 +38,12 @@ body {
     line-height: 1.5;
 }
 
-
-
-
 .container {
 
     width: min(100% - 32px, 960px);
 
-    margin: 48px auto;
+    margin: 24px auto;
 }
-
-
-
 
 .card {
 
@@ -59,13 +55,12 @@ body {
 
     border-radius: 12px;
 
-    padding: 24px;
+    padding: 16px;
 
     box-shadow:
         0 6px 18px
         rgba(0, 0, 0, 0.04);
 }
-
 
 .destaque {
 
@@ -73,15 +68,45 @@ body {
 
     font-weight: 500;
 
-    font-size: 1.6rem;
+    font-size: 1.4rem;
 
     color: var(--p);
 }
 
+.erros {
 
+    margin: 12px 0 0;
 
+    padding: 12px 16px;
+
+    border:
+        1px solid
+        var(--erro);
+
+    border-radius: 10px;
+
+    background: var(--erro-fundo);
+
+    color: var(--erro);
+}
+
+.erros p {
+
+    margin: 0 0 6px;
+
+    font-weight: 700;
+}
+
+.erros menu {
+
+    margin: 0;
+
+    padding-left: 20px;
+}
 
 form fieldset {
+
+    min-width: 0;
 
     border:
         1px solid
@@ -89,11 +114,10 @@ form fieldset {
 
     border-radius: 10px;
 
-    padding: 16px;
+    padding: 12px;
 
     margin: 16px 0 0;
 }
-
 
 legend {
 
@@ -102,7 +126,6 @@ legend {
     padding: 0 6px;
 }
 
-
 label {
 
     display: block;
@@ -110,12 +133,13 @@ label {
     margin: 10px 0 6px;
 }
 
-
 input,
 select,
 textarea {
 
     width: 100%;
+
+    max-width: 100%;
 
     padding: 10px 12px;
 
@@ -135,8 +159,6 @@ textarea:hover {
     border-color: var(--cinza);
 }
 
-
-
 input:focus,
 select:focus,
 textarea:focus {
@@ -149,22 +171,49 @@ textarea:focus {
         var(--p);
 }
 
+input.campo--ok {
+    border-color: var(--p);
+}
 
+input.campo--erro {
+    border-color: var(--erro);
+}
 
+input.campo--erro:focus {
+    outline-color: rgba(179, 38, 30, 0.2);
+}
+
+.campo__msg {
+
+    display: block;
+
+    margin-top: 4px;
+
+    font-size: 0.85rem;
+}
+
+.campo__msg:empty {
+    display: none;
+}
+
+.campo__msg--ok {
+    color: var(--p-escuro);
+}
+
+.campo__msg--erro {
+    color: var(--erro);
+}
 
 .acoes {
 
     display: flex;
 
-    flex-wrap: wrap;
+    flex-direction: column;
 
     gap: 12px;
 
     margin-top: 10px;
 }
-
-
-
 
 button,
 .acoes a {
@@ -185,18 +234,18 @@ button,
 
     text-decoration: none;
 
+    text-align: center;
+
     display: inline-block;
 
     font: inherit;
 }
-
 
 button:hover,
 .acoes a:hover {
 
     background: var(--p-escuro);
 }
-
 
 button.secundario,
 .acoes a.secundario {
@@ -212,22 +261,17 @@ button.secundario:hover,
     background: var(--cinza-borda);
 }
 
-
-
-
 .rodape {
   display: flex;
-  flex-wrap: wrap; 
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  padding: 32px 48px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 24px 16px;
   background: var(--cinza-claro);
   border: 1px solid var(--cinza-borda);
   font-size: 0.88rem;
   color: var(--cinza);
 }
-
 
 .rodape__marca p {
     margin: 4px 0 0;
@@ -236,7 +280,8 @@ button.secundario:hover,
 
 .rodape__links {
     display: flex;
-    gap: 24px;
+    flex-wrap: wrap;
+    gap: 8px 16px;
 }
 
 .rodape__links a {
@@ -250,4 +295,43 @@ button.secundario:hover,
 
 .rodape__copy {
     margin: 0;
+}
+
+
+
+@media (min-width: 960px) {
+
+    .container {
+        margin: 48px auto;
+    }
+
+    .card {
+        padding: 24px;
+    }
+
+    .destaque {
+        font-size: 1.6rem;
+    }
+
+    form fieldset {
+        padding: 16px;
+    }
+
+    .acoes {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .rodape {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+        padding: 32px 48px;
+    }
+
+    .rodape__links {
+        gap: 24px;
+    }
 }
