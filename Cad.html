@@ -12,6 +12,11 @@
         rel="stylesheet"
         href="Cad.css"
     >
+
+    <script
+        src="Cad.js"
+        defer
+    ></script>
 </head>
 
 <body>
@@ -24,7 +29,22 @@
                 Criar minha conta
             </h2>
 
-            <form action="index.html" method="get">
+            <section
+                class="erros"
+                id="erros"
+                role="alert"
+                hidden
+            >
+                <p>Cadastro não realizado:</p>
+                <menu id="erros-lista"></menu>
+            </section>
+
+            <form
+                action="index.html"
+                method="get"
+                id="form-cadastro"
+                novalidate
+            >
 
                 <fieldset>
 
@@ -33,15 +53,19 @@
                     </legend>
 
                     <label for="nome">
-                        Nome completo:
+                        Nome:
                     </label>
 
                     <input
                         type="text"
                         id="nome"
                         name="nome"
-                        required
+                        aria-describedby="nome-msg"
                     >
+                    <small
+                        class="campo__msg"
+                        id="nome-msg"
+                    ></small>
 
                     <label for="email">
                         E-mail:
@@ -52,8 +76,12 @@
                         id="email"
                         name="email"
                         placeholder="exemplo@email.com"
-                        required
+                        aria-describedby="email-msg"
                     >
+                    <small
+                        class="campo__msg"
+                        id="email-msg"
+                    ></small>
 
                     <label for="nascimento">
                         Data de nascimento:
@@ -63,8 +91,12 @@
                         type="date"
                         id="nascimento"
                         name="nascimento"
-                        required
+                        aria-describedby="nascimento-msg"
                     >
+                    <small
+                        class="campo__msg"
+                        id="nascimento-msg"
+                    ></small>
 
                     <div class="acoes">
 
