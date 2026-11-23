@@ -38,6 +38,15 @@ body {
     line-height: 1.5;
 }
 
+body {
+
+    min-height: 100vh;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
 .container {
 
     width: min(100% - 32px, 960px);
@@ -187,13 +196,11 @@ input.campo--erro:focus {
 
     display: block;
 
+    min-height: 1.3rem;
+
     margin-top: 4px;
 
     font-size: 0.85rem;
-}
-
-.campo__msg:empty {
-    display: none;
 }
 
 .campo__msg--ok {
@@ -266,6 +273,7 @@ button.secundario:hover,
   flex-direction: column;
   align-items: flex-start;
   gap: 16px;
+  margin-top: auto;
   padding: 24px 16px;
   background: var(--cinza-claro);
   border: 1px solid var(--cinza-borda);
@@ -297,7 +305,11 @@ button.secundario:hover,
     margin: 0;
 }
 
-
+.nome_site {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--p); 
+}
 
 @media (min-width: 960px) {
 
