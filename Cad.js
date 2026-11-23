@@ -2,28 +2,49 @@ const formulario = document.getElementById("form-cadastro");
 const caixaErros = document.getElementById("erros");
 const listaErros = document.getElementById("erros-lista");
 
+const areaCadastro = document.getElementById("area-cadastro");
+const areaJaCadastrado = document.getElementById("area-ja-cadastrado");
+const botaoSair = document.getElementById("btn-sair");
+const botaoOutraConta = document.getElementById("btn-outra-conta");
+
 
 const PADRAO_NOME = /^\p{L}[\p{L}'’-]*(?:\s+\p{L}[\p{L}'’-]*)*$/u;
 const PADRAO_EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+const NOME_MINIMO = 3;
+const NOME_MAXIMO = 50;
+
+
+
+const TOKEN_JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzLCJuYW1lIjoiRW5nLiBDb21wdXRhXHUwMGU3XHUwMGUzbyIsInJvbGUiOiJKV1QiLCJpYXQiOjE3NTk5ODEzMTcsImV4cCI6MTc1OTk4NDkxN30.b1KfcSFInRwYnvRA0Ae5jYuL59KZmCsufPgISNGq0X0";
 
 
 function validarNome(input) {
     const nome = input.value.trim().replace(/\s+/g, " ");
     if (nome === "") {
-        return "Não foi preenchido.";
+        return "Nome não foi preenchido";
     }
     if (!PADRAO_NOME.test(nome)) {
-        return "use apenas letras.";
+        return "Nome deve conter apenas letras";
+    }
+
+    const quantidadeDeLetras = nome.replace(/[^\p{L}]/gu, "").length;
+
+    if (quantidadeDeLetras < NOME_MINIMO) {
+        return "Nome deve ter no mínimo 3 letras";
+    }
+    if (quantidadeDeLetras > NOME_MAXIMO) {
+        return "Nome deve conter no máximo 50 letras";
     }
     return "";
 }
 function validarEmail(input) {
     const email = input.value.trim();
     if (email === "") {
-        return "Não foi preenchido.";
+        return "E-mail não foi preenchido";
     }
     if (!PADRAO_EMAIL.test(email)) {
-        return "formato inválido (use o modelo exemplo@email.com).";
+        return "E-mail com formato inválido (use o modelo exemplo@email.com)";
     }
     return "";
 }
@@ -35,22 +56,22 @@ function dataDeHoje() {
 }
 function validarNascimento(input) {
     if (input.validity.badInput) {
-        return "Data está incompleta.";
+        return "Data de nascimento está incompleta";
     }
     if (input.value === "") {
-        return "Não foi preenchido.";
+        return "Data de nascimento não foi preenchida";
     }
     if (input.value > dataDeHoje()) {
-        return "Data inválida.";
+        return "Data de nascimento inválida";
     }
     return "";
 }
 
 
 const campos = [
-    { id: "nome",       rotulo: "Nome completo",      validar: validarNome },
-    { id: "email",      rotulo: "E-mail",             validar: validarEmail },
-    { id: "nascimento", rotulo: "Data de nascimento", validar: validarNascimento }
+    { id: "nome",       validar: validarNome },
+    { id: "email",      validar: validarEmail },
+    { id: "nascimento", validar: validarNascimento }
 ];
 
 
@@ -77,7 +98,7 @@ function coletarErros() {
     campos.forEach((campo) => {
         const erro = campo.validar(document.getElementById(campo.id));
         if (erro !== "") {
-            erros.push(`${campo.rotulo}: ${erro}`);
+            erros.push(erro);
         }
     });
 
@@ -126,6 +147,28 @@ function limparTudo() {
 }
 
 
+
+
+function mostrarJaCadastrado() {
+    areaCadastro.hidden = true;
+    areaJaCadastrado.hidden = false;
+}
+
+function mostrarCadastro() {
+    areaJaCadastrado.hidden = true;
+    areaCadastro.hidden = false;
+}
+
+
+function verificarCadastroExistente() {
+    if (localStorage.getItem("token")) {
+        mostrarJaCadastrado();
+    }
+}
+
+
+
+
 formulario.addEventListener("submit", (evento) => {
     campos.forEach(mostrarResultado);
 
@@ -141,6 +184,7 @@ formulario.addEventListener("submit", (evento) => {
         }
     } else {
         caixaErros.hidden = true;
+        localStorage.setItem("token", TOKEN_JWT);
     }
 });
 
@@ -151,7 +195,13 @@ formulario.addEventListener("reset", limparTudo);
 campos.forEach((campo) => {
     const input = document.getElementById(campo.id);
 
-    input.addEventListener("blur", () => {
+    input.addEventListener("blur", (evento) => {
+        // Se o foco foi para um botão ou link, a conferência fica por conta do envio
+        const destino = evento.relatedTarget;
+        if (destino && destino.closest("button, a")) {
+            return;
+        }
+
         mostrarResultado(campo);
         atualizarResumo();
     });
@@ -166,3 +216,20 @@ campos.forEach((campo) => {
         }
     });
 });
+
+
+
+botaoSair.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    window.location.href = "PaginaInicio.html";
+});
+
+
+botaoOutraConta.addEventListener("click", () => {
+    localStorage.removeItem("token");
+    mostrarCadastro();
+    document.getElementById("nome").focus();
+});
+
+
+verificarCadastroExistente();
