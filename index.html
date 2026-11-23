@@ -1,11 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Centros de doação perto de você</title>
+
+    <script
+        src="script.js"
+        defer
+    ></script>
+
+    <!-- Leaflet biblioteca do mapa com pins -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -27,38 +35,39 @@
 
   <main>
     <div id="lista">
+      <!-- data-lat e data-lng são as posições do pin de cada centro no mapa -->
 
-      <div class="centro" data-categoria="roupa">
+      <div class="centro" data-categoria="roupa" data-lat="-22.8930" data-lng="-47.0750">
         <h3>Bazar Solidário Vila Nova</h3>
         <p>Vila Nova, Campinas</p>
         <span class="categoria-tag">Roupas</span>
       </div>
 
-      <div class="centro" data-categoria="saude">
+      <div class="centro" data-categoria="saude" data-lat="-22.9056" data-lng="-47.0608">
         <h3>UBS Central</h3>
         <p>Centro, Campinas</p>
         <span class="categoria-tag">Saúde</span>
       </div>
 
-      <div class="centro" data-categoria="outros">
+      <div class="centro" data-categoria="outros" data-lat="-22.9200" data-lng="-47.0560">
         <h3>Banco de Alimentos</h3>
         <p>Ponte Preta, Campinas</p>
         <span class="categoria-tag">Outros</span>
       </div>
 
-      <div class="centro" data-categoria="roupa">
+      <div class="centro" data-categoria="roupa" data-lat="-22.8950" data-lng="-47.0480">
         <h3>Doações Cambuí</h3>
         <p>Cambuí, Campinas</p>
         <span class="categoria-tag">Roupas</span>
       </div>
 
-      <div class="centro" data-categoria="saude">
+      <div class="centro" data-categoria="saude" data-lat="-22.8740" data-lng="-47.0560">
         <h3>Posto de Saúde Taquaral</h3>
         <p>Taquaral, Campinas</p>
         <span class="categoria-tag">Saúde</span>
       </div>
 
-      <div class="centro" data-categoria="outros">
+      <div class="centro" data-categoria="outros" data-lat="-22.8200" data-lng="-47.0790">
         <h3>Casa de Apoio Barão Geraldo</h3>
         <p>Barão Geraldo, Campinas</p>
         <span class="categoria-tag">Outros</span>
@@ -66,15 +75,11 @@
 
     </div>
 
-    <iframe
-      id="mapa"
-      width="100%"
-      height="100%"
-      loading="lazy"
-      src="https://www.openstreetmap.org/export/embed.html?bbox=-47.15%2C-22.95%2C-46.98%2C-22.80&layer=mapnik"
-      title="Mapa de Campinas, SP">
-    </iframe>
+    
+    <div id="mapa"></div>
   </main>
 
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="mapa.js"></script>
 </body>
 </html>
