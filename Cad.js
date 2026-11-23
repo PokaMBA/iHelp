@@ -196,7 +196,7 @@ campos.forEach((campo) => {
     const input = document.getElementById(campo.id);
 
     input.addEventListener("blur", (evento) => {
-        // Se o foco foi para um botão ou link, a conferência fica por conta do envio
+        
         const destino = evento.relatedTarget;
         if (destino && destino.closest("button, a")) {
             return;
@@ -221,7 +221,7 @@ campos.forEach((campo) => {
 
 botaoSair.addEventListener("click", () => {
     localStorage.removeItem("token");
-    window.location.href = "PaginaInicio.html";
+    window.location.href = "index.html";
 });
 
 
